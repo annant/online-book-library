@@ -1,0 +1,101 @@
+<header class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
+  <a class="navbar-brand" href="/">
+    Book Store
+  </a>
+  <button
+    mat-mini-fab
+    class="d-block d-sm-none pull-right"
+    color="warn"
+    aria-label="Example icon button with a filter list icon"
+    (click)="showFilterPanelInMobileView = !showFilterPanelInMobileView;">
+    <mat-icon>filter_alt</mat-icon>
+  </button>
+</header>
+<div class="container-fluid main-content">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 filter-panel d-block" [ngClass]="{'d-none d-sm-block': !showFilterPanelInMobileView, 'd-block': showFilterPanelInMobileView}">
+      <mat-form-field class="full-width">
+        <mat-label>Search ex: name/author/page count</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText" (ngModelChange)="saveState()" (focus)="resetFilterCriteria()">
+        <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <hr>
+      <label><strong>Filters</strong></label>
+      <ul class="checkbox-group">
+        <li><strong>Authors:</strong></li>
+        <li *ngFor="let author of authors">
+          <mat-checkbox [checked]="isAuthorSelected(author)" [value]="author" (change)="filterListByAuthorPreference($event)">
+            {{author}}
+          </mat-checkbox>
+        </li>
+      </ul>
+      <hr>
+      <ul class="checkbox-group">
+        <li><strong>Books:</strong></li>
+        <li *ngFor="let book of bookList">
+          <mat-checkbox [checked]="isBookSelected(book)" [value]="book.name" (change)="filterListByBookPreference($event)">
+            {{book.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+      <hr>
+      <div>
+        <p><strong>Page Count</strong></p>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+            <p class="range-button"
+              [class.selected]="filterCriteria.pageCountRangeType === rangeType.equal"
+              (click)="selectRangeType(rangeType.equal)">=</p>
+            <p class="range-button"
+              [class.selected]="filterCriteria.pageCountRangeType === rangeType.greaterThan"
+              (click)="selectRangeType(rangeType.greaterThan);">&gt;</p>
+            <p class="range-button"
+              [class.selected]="filterCriteria.pageCountRangeType === rangeType.lessThan"
+              (click)="selectRangeType(rangeType.lessThan);">&lt;</p>
+          </div>
+          <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+            <mat-form-field class="full-width">
+              <input matInput type="number" [(ngModel)]="filterCriteria.pageCount" (ngModelChange)="searchText='';saveState();">
+              <button mat-button *ngIf="filterCriteria?.pageCount" matSuffix mat-icon-button aria-label="Clear" (click)="filterCriteria.pageCount=null">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Publish Date:</mat-label>
+        <input matInput [matDatepicker]="datePicker" [(ngModel)]="filterCriteria.publishDate" (ngModelChange)="searchText='';saveState();">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+        <button mat-button *ngIf="filterCriteria?.publishDate" matSuffix mat-icon-button aria-label="Clear" (click)="filterCriteria.publishDate=null">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="margin-top: 20px;">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 book-card" *ngFor="let book of bookList | filterBook: searchText: filterCriteria">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{book.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-card-title>{{book.author}}</mat-card-title>
+              <p>Publish Date: {{book.publishDate | date: 'MMM dd, yyyy'}}</p>
+              <p>pages:{{book.pageCount}} </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>      
+    </div>
+</div>
+<footer class="navbar navbar-light bg-light navbar-expand-lg fixed-bottom app-footer">
+  <span class="copyrights">@ Copyrights</span>
+  <span class="company-name">Benison Technologies Pvt Ltd</span>
+  <span class="right-reserved">All Rights Reserved.</span>
+</footer>

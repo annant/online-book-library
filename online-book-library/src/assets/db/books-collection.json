@@ -1,0 +1,86 @@
+[
+    {
+        "id": "b001",
+        "name": "Book 1",
+        "author": "Author 1",
+        "pageCount": 50,
+        "publishDate": "01-12-2020"
+    },
+    {
+        "id": "b002",
+        "name": "Book 2",
+        "author": "Author 1",
+        "pageCount": 150,
+        "publishDate": "01-12-2019"
+    },
+    {
+        "id": "b003",
+        "name": "Book 3",
+        "author": "Author 1",
+        "pageCount": 500,
+        "publishDate": "05-12-2020"
+    },
+    {
+        "id": "b004",
+        "name": "Book 4",
+        "author": "Author 1",
+        "pageCount": 30,
+        "publishDate": "05-25-2019"
+    },
+    {
+        "id": "b005",
+        "name": "Book 5",
+        "author": "Author 2",
+        "pageCount": 50,
+        "publishDate": "01-12-2020"
+    },
+    {
+        "id": "b006",
+        "name": "Book 6",
+        "author": "Author 2",
+        "pageCount": 150,
+        "publishDate": "05-25-2019"
+    },
+    {
+        "id": "b007",
+        "name": "Book 7",
+        "author": "Author 2",
+        "pageCount": 500,
+        "publishDate": "01-12-2020"
+    },
+    {
+        "id": "b008",
+        "name": "Book 8",
+        "author": "Author 2",
+        "pageCount": 30,
+        "publishDate": "05-25-2019"
+    },
+    {
+        "id": "b009",
+        "name": "Book 9",
+        "author": "Author 3",
+        "pageCount": 50,
+        "publishDate": "05-25-2019"
+    },
+    {
+        "id": "b010",
+        "name": "Book 10",
+        "author": "Author 3",
+        "pageCount": 150,
+        "publishDate": "01-12-2020"
+    },
+    {
+        "id": "b011",
+        "name": "Book 11",
+        "author": "Author 3",
+        "pageCount": 500,
+        "publishDate": "01-12-2020"
+    },
+    {
+        "id": "b012",
+        "name": "Book 12",
+        "author": "Author 3",
+        "pageCount": 30,
+        "publishDate": "01-12-2020"
+    }
+]
